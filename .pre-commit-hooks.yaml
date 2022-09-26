@@ -1,0 +1,53 @@
+- id: transform-encoding
+  name: Automatically convert file encoding
+  description: This hook automatically converts files that don't meet encoding requirements
+  entry: dev-hooks-transcoding
+  language: python
+  types: [text]
+  stages: [commit]
+  args: [-v]
+  # Do not operate concurrently, otherwise the configuration file will be cluttered
+  require_serial: true
+  minimum_pre_commit_version: 2.9.0
+
+- id: restore-encoding
+  name: Automatically restore file encoding
+  description: This hook automatically restore encoding after commit
+  entry: dev-hooks-transcoding -r
+  language: python
+  stages: [post-commit]
+  args: [-v]
+  always_run: true
+  require_serial: true
+  minimum_pre_commit_version: 2.9.0
+
+- id: chinese-transform-encoding
+  name: Converting file encodings that contain chinese
+  description: Convert the encoding of files containing chinese to suit the encoding requirements of the compiler
+  entry: dev-hooks-transcoding --chinese
+  language: python
+  # Chinese conversion is usually only run once, only for C/C++ compilers,
+  # it is recommended to execute through pre-commit run --all-file --hook-stage manual chinese-transform-encoding
+  stages: [manual]
+  # Visual Studio compiles with non-ascii encoding to utf-8-sig
+  args: [-v, -e, utf-8-sig]
+  types_or: [c++, c]
+  minimum_pre_commit_version: 2.9.0
+
+- id: crlf-to-lf
+  name: Automatically convert CRLF to LF newline
+  description: Convert CRLF to LF of text files
+  entry: dev-hooks-newline
+  language: python
+  args: [-v]
+  minimum_pre_commit_version: 2.9.0
+
+- id: lf-to-crlf
+  name: Automatically convert LF to CRLF newline
+  description: Convert LF to CRLF of text files
+  entry: dev-hooks-newline -r
+  language: python
+  stages: [post-checkout, post-merge]
+  args: [-v]
+  always_run: true
+  minimum_pre_commit_version: 2.9.0
