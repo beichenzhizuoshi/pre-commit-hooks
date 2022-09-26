@@ -9,9 +9,9 @@
     rev: v1.0.0
     hooks:
       # automatically convert file encoding before submitting file
-      - id: auto-transform-encoding
+      - id: transform-encoding
       # restore the original encoding after submitting the file
-      - id: auto-restore-encoding
+      - id: restore-encoding
       - id: chinese-transform-encoding
 ```
 ### 2. 中文文件编码转换 `chinese-transform-encoding`

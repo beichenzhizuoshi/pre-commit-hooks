@@ -1,6 +1,12 @@
 default_stages: [commit]
 
 repos:
+  - repo: https://github.com/beichenzhizuoshi/pre-commit-hooks
+    rev: v1.0.0
+    hooks:
+      # automatically convert file encoding before submitting file
+      - id: transform-encoding
+      - id: crlf-to-lf
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.3.0
     hooks:
