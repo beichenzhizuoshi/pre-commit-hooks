@@ -2,7 +2,7 @@ default_stages: [commit]
 
 repos:
   - repo: https://github.com/beichenzhizuoshi/pre-commit-hooks
-    rev: v1.0.0
+    rev: v1.0.1
     hooks:
       # automatically convert file encoding before submitting file
       - id: transform-encoding

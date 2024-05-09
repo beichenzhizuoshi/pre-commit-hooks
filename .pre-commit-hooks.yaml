@@ -52,3 +52,12 @@
   args: [-v]
   types: [text]
   minimum_pre_commit_version: 2.9.0
+
+- id: vcpkg-format
+  name: Format vcpkg.json file
+  description: Format vcpkg.json file
+  entry: dev-hooks-vcpkg-format
+  language: python
+
+  files: 'vcpkg\.json$'
+  minimum_pre_commit_version: 2.9.0

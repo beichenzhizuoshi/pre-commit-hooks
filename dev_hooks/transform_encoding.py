@@ -111,8 +111,10 @@ def _execute_transform_action(options: argparse.Namespace) -> int:
         file_attr = _guess_file_encoding(path)
         input_encoding = file_attr.get('encoding')
         if file_attr.get('confidence') < options.confidence:
-            logging.info('Detect file encoding accuracy is too low, path: %s, encoding: %s, confidence: %s, min confidence: %s',
-                         path, input_encoding, file_attr.get('confidence'), options.confidence)
+            logging.info(
+                'Detect file encoding accuracy is too low, path: %s, encoding: %s, confidence: %s, min confidence: %s', path,
+                input_encoding, file_attr.get('confidence'),
+                options.confidence)
             continue
 
         # 规范化编码名称,后续好比较
@@ -175,8 +177,10 @@ def _execute_chinese_transform_action(options: argparse.Namespace) -> int:
         file_attr = _guess_file_encoding(path)
         input_encoding = file_attr.get('encoding')
         if file_attr.get('confidence') < options.confidence:
-            logging.info('Detect file encoding accuracy is too low, path: %s, encoding: %s, confidence: %s, min confidence: %s',
-                         path, input_encoding, file_attr.get('confidence'), options.confidence)
+            logging.info(
+                'Detect file encoding accuracy is too low, path: %s, encoding: %s, confidence: %s, min confidence: %s', path,
+                input_encoding, file_attr.get('confidence'),
+                options.confidence)
             continue
         input_encoding = _hook_encoding(input_encoding)
         if output_encoding == input_encoding or input_encoding == 'ascii':
@@ -203,7 +207,8 @@ def _init_arguments():
     parser.add_argument('--chinese', action='store_true',
                         help='Convert file encodings containing chinese.')
     parser.add_argument(
-        '--root', default=Path.cwd(), help='Specify the root directory of the git repository and call it from the command line.')
+        '--root', default=Path.cwd(),
+        help='Specify the root directory of the git repository and call it from the command line.')
     parser.add_argument('--confidence', type=float, default=0.725,
                         help='Specifies the accuracy of guessing file encoding.')
 
